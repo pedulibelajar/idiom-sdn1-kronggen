@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ungkapan Fun World 🎉 - SDN 1 KRONGGEN - Bahasa Indonesia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#ff4d8d; --orange:#ff9f1c; --yellow:#ffcf00; --green:#2ec4b6; --blue:#3a86ff; --purple:#8338ec; --red:#ff595e;
+}
+body{font-family:'Baloo 2','Fredoka','Comic Sans MS',cursive,sans-serif;background:linear-gradient(135deg,#fff3b0 0%,#ffd6ff 25%,#bde0fe 50%,#caffbf 75%,#ffdfba 100%);min-height:100vh;color:#2b2d42;overflow-x:hidden}
+.bg-bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:.25;animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-30px) rotate(15deg)}}
+@keyframes bounce-in{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes rainbow{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--blue),var(--purple));padding:5px;border-radius:0 0 25px 25px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.nav-inner{background:#fff;border-radius:20px;display:flex;align-items:center;gap:8px;padding:10px 14px;flex-wrap:wrap;justify-content:center}
+.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(90deg,var(--pink),var(--orange),var(--purple),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.nav-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.nav-btn{border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.95rem;padding:10px 18px;border-radius:999px;color:#fff;transition:.2s;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.nav-btn:hover{transform:translateY(-2px) scale(1.05)}
+.nav-btn:active{transform:translateY(2px);box-shadow:none}
+.nav-btn.active{outline:4px solid #2b2d42;animation:pop .3s}
+.btn-home{background:var(--pink)} .btn-materi{background:var(--orange)} .btn-latihan{background:var(--green)} .btn-tantangan{background:var(--purple)} .btn-game{background:var(--blue)}
+
+.container{max-width:1080px;margin:0 auto;padding:20px 16px 60px;position:relative;z-index:1}
+.page{display:none;animation:bounce-in .5s}
+.page.active{display:block}
+
+/* HERO */
+.hero{background:#fff;border-radius:30px;padding:28px 22px;text-align:center;border:6px solid #2b2d42;box-shadow:8px 8px 0 #2b2d42;position:relative;overflow:hidden;margin-bottom:20px}
+.hero h1{font-size:2.2rem;line-height:1.1;margin:10px 0}
+.hero h1 span{background:linear-gradient(90deg,#ff4d8d,#ff9f1c,#2ec4b6,#3a86ff,#8338ec);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.1rem;margin-bottom:16px}
+.mascots{font-size:3rem;letter-spacing:8px;animation:wiggle 2s infinite}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+.badge{padding:8px 16px;border-radius:999px;font-weight:800;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.cta{border:3px solid #2b2d42;border-radius:999px;padding:12px 24px;font-family:inherit;font-weight:800;font-size:1.05rem;cursor:pointer;box-shadow:4px 4px 0 #2b2d42;transition:.15s}
+.cta:hover{transform:translateY(-3px) rotate(-1deg)}
+.cta:active{transform:translateY(2px);box-shadow:none}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.stat-card{border-radius:20px;padding:16px;text-align:center;border:4px solid #2b2d42;box-shadow:5px 5px 0 #2b2d42;color:#fff;font-weight:800}
+.stat-card b{font-size:1.8rem;display:block}
+
+/* Section titles */
+.sec-title{display:inline-block;font-size:1.5rem;font-weight:800;background:#2b2d42;color:#fff;padding:8px 22px;border-radius:999px;margin:18px 0 12px;box-shadow:4px 4px 0 rgba(0,0,0,.2)}
+.sec-desc{background:#fff;border:3px dashed #2b2d42;border-radius:18px;padding:12px 18px;margin-bottom:14px;font-size:1.02rem}
+
+/* Filter */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filter-btn{border:3px solid #2b2d42;background:#fff;border-radius:999px;padding:8px 18px;font-family:inherit;font-weight:800;cursor:pointer;transition:.15s}
+.filter-btn.active{background:#2b2d42;color:#ffcf00;transform:scale(1.05)}
+
+/* Cards materi */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.idiom-card{perspective:1200px;min-height:280px;cursor:pointer}
+.idiom-inner{position:relative;width:100%;height:100%;min-height:280px;transition:transform .6s;transform-style:preserve-3d}
+.idiom-card.flipped .idiom-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;border:4px solid #2b2d42;box-shadow:6px 6px 0 #2b2d42;padding:18px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.front{color:#fff}
+.back{background:#fff;transform:rotateY(180deg);justify-content:flex-start;gap:6px;overflow:auto}
+.idiom-emoji{font-size:3.2rem;margin-bottom:6px}
+.idiom-en{font-size:1.25rem;font-weight:800;background:rgba(255,255,255,.9);color:#2b2d42;padding:6px 14px;border-radius:999px;margin-bottom:6px}
+.idiom-cat{font-size:.8rem;font-weight:800;background:#2b2d42;color:#ffcf00;padding:4px 12px;border-radius:999px}
+.tap-hint{margin-top:10px;background:rgba(0,0,0,.25);padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:700}
+.meaning{font-size:1.1rem;font-weight:800;color:var(--pink)}
+.example{background:#fff3b0;border-radius:12px;padding:8px 10px;font-size:.92rem;margin:6px 0;width:100%}
+.speak-btn{border:none;background:var(--blue);color:#fff;font-family:inherit;font-weight:800;padding:8px 16px;border-radius:999px;cursor:pointer;margin-top:6px;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.speak-btn:hover{transform:scale(1.05)}
+
+/* Quiz */
+.quiz-box{background:#fff;border:5px solid #2b2d42;border-radius:24px;box-shadow:7px 7px 0 #2b2d42;padding:22px;margin-bottom:16px}
+.progress{height:18px;background:#eee;border-radius:999px;overflow:hidden;border:2px solid #2b2d42;margin-bottom:14px}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green));transition:width .4s;border-radius:999px}
+.q-emoji{font-size:3.5rem;text-align:center}
+.q-text{font-size:1.25rem;font-weight:800;text-align:center;margin:10px 0}
+.opt-btn{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:16px;border:3px solid #2b2d42;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer;background:#f8f9ff;transition:.15s}
+.opt-btn:hover{transform:translateX(6px)}
+.opt-btn.correct{background:#06d6a0;color:#fff;animation:pop .4s}
+.opt-btn.wrong{background:#ef476f;color:#fff}
+.opt-btn:disabled{cursor:default;opacity:.95}
+.feedback{border-radius:14px;padding:12px;margin-top:10px;font-weight:700;display:none}
+.feedback.show{display:block;animation:bounce-in .4s}
+.feedback.ok{background:#d8f3dc;border:3px solid #06d6a0}
+.feedback.no{background:#ffccd5;border:3px solid #ef476f}
+.next-btn{margin-top:12px;background:#2b2d42;color:#ffcf00;border:none;padding:12px 26px;border-radius:999px;font-family:inherit;font-weight:800;font-size:1rem;cursor:pointer;display:none}
+.next-btn.show{display:inline-block}
+.score-board{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.score-pill{background:#2b2d42;color:#fff;padding:8px 18px;border-radius:999px;font-weight:800}
+
+/* Challenge */
+.timer-big{font-size:3.5rem;font-weight:800;text-align:center;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.challenge-card{background:#fff;border:5px solid #2b2d42;border-radius:24px;box-shadow:7px 7px 0 #2b2d42;padding:22px;text-align:center}
+.streak{font-size:1.1rem;font-weight:800}
+.heart{font-size:1.4rem}
+
+/* Memory */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:640px){.memory-grid{grid-template-columns:repeat(3,1fr)} .hero h1{font-size:1.6rem}}
+.mem-card{background:#fff;border:3px solid #2b2d42;border-radius:16px;min-height:110px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-weight:800;font-size:.9rem;cursor:pointer;box-shadow:4px 4px 0 #2b2d42;transition:.2s;user-select:none}
+.mem-card.closed{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-size:2rem}
+.mem-card.matched{background:#06d6a0;color:#fff;transform:scale(.97);cursor:default}
+.mem-card.open{background:#ffcf00}
+
+/* Result */
+.result{text-align:center;padding:20px}
+.result-emoji{font-size:4.5rem;animation:wiggle 1.5s infinite}
+.stars{font-size:2.8rem;margin:8px 0}
+
+/* Confetti */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+
+/* Footer */
+footer{text-align:center;padding:20px;font-weight:700;opacity:.8}
+.kbd{background:#2b2d42;color:#ffcf00;padding:2px 10px;border-radius:8px;font-size:.85rem}
+/* School & Music - MINI tidak mengganggu */
+.school-bar{background:linear-gradient(90deg,#ff4d8d,#ff9f1c,#2ec4b6,#3a86ff);color:#fff;text-align:center;font-weight:800;padding:8px 12px;font-size:1rem;letter-spacing:.5px}
+.school-bar span{background:#2b2d42;color:#ffcf00;padding:3px 14px;border-radius:999px;display:inline-block;margin:2px}
+.school-name-hero{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--purple));color:#fff;font-weight:800;padding:8px 22px;border-radius:999px;border:3px solid #2b2d42;box-shadow:3px 3px 0 #2b2d42;margin-bottom:8px}
+.music-mini{position:fixed;right:10px;bottom:10px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+#musicFab{width:46px;height:46px;border-radius:50%;border:3px solid #2b2d42;background:var(--pink);color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:3px 3px 0 #2b2d42;opacity:.92}
+#musicFab.playing{background:var(--green);animation:wiggle 1.5s infinite}
+#musicPanel{display:none;background:#fff;border:3px solid #2b2d42;border-radius:16px;padding:8px 10px;box-shadow:4px 4px 0 #2b2d42;align-items:center;gap:6px}
+#musicPanel.open{display:flex}
+#musicPanel button{border:none;cursor:pointer;font-family:inherit;font-weight:800;border-radius:999px;padding:6px 10px;color:#fff;font-size:.8rem}
+#musicToggle{background:var(--pink)} #musicNext{background:var(--blue)}
+#musicPanel input{width:70px}
+/* Login */
+#loginOverlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff4d8d,#ff9f1c,#ffcf00,#2ec4b6,#3a86ff);padding:16px}
+.login-card{background:#fff;border:6px solid #2b2d42;border-radius:28px;box-shadow:10px 10px 0 #2b2d42;max-width:460px;width:100%;padding:26px 22px;text-align:center;animation:bounce-in .5s;max-height:92vh;overflow:auto}
+.login-card input{width:100%;padding:12px 16px;border-radius:14px;border:3px solid #2b2d42;font-family:inherit;font-weight:700;font-size:1rem;margin:6px 0}
+.login-photo{width:100%;border-radius:18px;border:4px solid #2b2d42;margin:10px 0;max-height:220px;object-fit:cover}
+/* Guru */
+#guruOverlay{position:fixed;inset:0;z-index:101;display:none;align-items:flex-start;justify-content:center;background:rgba(43,45,66,.85);padding:14px;overflow:auto}
+.guru-card{background:#fff;border:6px solid #2b2d42;border-radius:24px;box-shadow:8px 8px 0 #000;max-width:900px;width:100%;padding:20px;animation:bounce-in .4s;max-height:94vh;overflow:auto}
+.guru-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.guru-table{width:100%;border-collapse:collapse;font-size:.9rem;margin:8px 0}
+.guru-table th,.guru-table td{border:2px solid #2b2d42;padding:6px 8px;text-align:left}
+.guru-table th{background:#2b2d42;color:#ffcf00}
+.guru-table tr:nth-child(even){background:#fff3b0}
+/* Teori Idiom */
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:12px 0}
+.theory-card{border:4px solid #2b2d42;border-radius:20px;padding:16px;box-shadow:5px 5px 0 #2b2d42;background:#fff}
+.theory-card h3{margin-bottom:6px}
+.theory-card ul{margin-left:18px;font-weight:600}
+.theory-card li{margin:4px 0}
+/* Menu depan */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.menu-card{border:4px solid #2b2d42;border-radius:22px;padding:20px 14px;text-align:center;box-shadow:6px 6px 0 #2b2d42;cursor:pointer;transition:.15s;color:#fff;position:relative}
+.menu-card:hover{transform:translateY(-4px) rotate(-1deg)}
+.menu-card.locked{filter:grayscale(.9);opacity:.75;cursor:not-allowed}
+.menu-card .lock{position:absolute;top:10px;right:12px;font-size:1.5rem}
+.menu-card h3{font-size:1.25rem;margin:6px 0}
+.menu-card p{font-size:.9rem;font-weight:600}
+.menu-icon{font-size:3rem}
+.teacher-card{background:#fff;border:5px solid #2b2d42;border-radius:24px;box-shadow:7px 7px 0 #2b2d42;padding:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.teacher-card img{width:220px;max-width:100%;border-radius:18px;border:4px solid #2b2d42;object-fit:cover}
+.teacher-info{flex:1;min-width:220px;text-align:left}
+.lock-note{background:#fff3cd;border:3px solid #ff9f1c;border-radius:14px;padding:10px 14px;margin:10px 0;font-weight:700}
+.nav-lock{opacity:.55;filter:grayscale(.6)}
+#studentBadge{background:#2b2d42;color:#ffcf00;padding:6px 14px;border-radius:999px;font-weight:800;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="school-bar">🏫 <span>SDN 1 KRONGGEN</span> 🌈 Media Pembelajaran Bahasa Indonesia • Ungkapan • Kelas 4-6 SD 🎉</div>
+<canvas id="confetti"></canvas>
+<div class="bg-bubbles" id="bubbles"></div>
+
+<div class="music-mini" id="musicMini">
+  <div id="musicPanel">
+    <button id="musicToggle" onclick="toggleMusic()">▶️ ON</button>
+    <button id="musicNext" onclick="restartSong()" title="Ulangi">🔁</button>
+    <input id="musicVol" type="range" min="0" max="100" value="50" oninput="setVol(this.value)" title="Volume">
+  </div>
+  <button id="musicFab" onclick="toggleMusicPanel()" title="Musik">🎵</button>
+</div>
+<audio id="bgm" loop preload="auto" src="anak_nusantara115-happy-ukulele-claps-fun-amp-upbeat-acoustic-306706.mp3"></audio>
+
+<div id="loginOverlay">
+  <div class="login-card">
+    <div class="school-name-hero">🏫 SDN 1 KRONGGEN</div>
+    <h2 style="margin:6px 0">🌈 IDIOM 🎉</h2>
+    <p><b>Media Pembelajaran Bahasa Indonesia • IDIOM</b><br>Kelas 4-6 SD • 🎵 Musik MP3</p>
+    <img class="login-photo" src="6208275892824380429.jpg" alt="Guru dan Siswa SDN 1 Kronggen" onerror="this.style.display='none'">
+    <p style="font-size:.9rem">👩‍🏫 Bersama Guru-guru SDN 1 Kronggen di depan Perpustakaan 📚</p>
+    <input id="loginName" placeholder="✏️ Tulis Nama Kamu... (contoh: Budi)">
+    <input id="loginToken" placeholder="🔑 Token Kelas..." inputmode="numeric">
+    <p style="font-size:.85rem">💡 Token kelas: <b>12345</b> (tanya Bu/Bapak Guru)</p>
+    <div id="loginError" style="color:#ef476f;font-weight:800;display:none;margin:6px 0"></div>
+    <button class="cta" style="background:var(--yellow);width:100%;margin-top:8px" onclick="doLogin()">🚀 MASUK BELAJAR!</button>
+    <hr style="margin:12px 0;border:2px dashed #2b2d42">
+    <p style="font-size:.9rem">👩‍🏫 Guru SDN 1 Kronggen?</p>
+    <button class="cta" style="background:#fff;font-size:.9rem;padding:8px 18px" onclick="openGuru()">🔑 Login Guru • Rekap Nilai & Absensi</button>
+  </div>
+</div>
+
+<div id="guruOverlay">
+  <div class="guru-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h2>👩‍🏫 Panel Guru • SDN 1 KRONGGEN</h2>
+      <button class="cta" style="background:#ef476f;color:#fff;padding:8px 16px" onclick="closeGuru()">✖ Tutup</button>
+    </div>
+    <div id="guruLoginBox">
+      <p>Masukkan kode guru untuk melihat <b>rekap nilai & absensi</b>. Kode default: <b>guru123</b></p>
+      <input id="guruPass" type="password" placeholder="🔑 Kode Guru..." style="width:100%;padding:12px 16px;border-radius:14px;border:3px solid #2b2d42;font-family:inherit;font-weight:700;margin:6px 0">
+      <div id="guruError" style="color:#ef476f;font-weight:800;display:none"></div>
+      <button class="cta" style="background:var(--blue);color:#fff" onclick="doGuruLogin()">Masuk Panel Guru 🚀</button>
+    </div>
+    <div id="guruDashBox" style="display:none">
+      <div class="guru-tabs">
+        <button class="filter-btn active" onclick="guruTab('nilai',this)">📊 Rekap Nilai</button>
+        <button class="filter-btn" onclick="guruTab('absen',this)">📝 Absensi</button>
+        <button class="filter-btn" onclick="exportCSV()">⬇️ Unduh CSV</button>
+        <button class="filter-btn" onclick="clearGuruData()">🗑️ Hapus Data</button>
+      </div>
+      <div id="tab-nilai"></div>
+      <div id="tab-absen" style="display:none"></div>
+      <p style="font-size:.85rem;margin-top:8px">💡 Nilai tersimpan otomatis per nama siswa di browser ini (offline). Untuk gabung kelas, unduh CSV tiap perangkat lalu gabung di Excel. Absensi tercatat setiap login siswa.</p>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">🌈 Ungkapan Fun World • SDN 1 KRONGGEN 🎉</div>
+    <span id="studentBadge">👋 Halo!</span>
+    <div class="nav-btns">
+      <button class="nav-btn btn-home active" onclick="go('home')">🏠 Menu</button>
+      <button class="nav-btn btn-materi" onclick="go('materi')">📚 Materi</button>
+      <button class="nav-btn btn-latihan" id="navLatihan" onclick="go('latihan')">✏️ Latihan 🔒</button>
+      <button class="nav-btn btn-tantangan" id="navTantangan" onclick="go('tantangan')">⚡ Tantangan 🔒</button>
+      <button class="nav-btn btn-game" id="navGame" onclick="go('game')">🎮 Game 🔒</button>
+      <button class="nav-btn" style="background:#6a4c93" onclick="openGuru()">👩‍🏫 Guru</button>
+      <button class="nav-btn" style="background:#2b2d42" onclick="logout()">🚪 Keluar</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- HOME = MENU UTAMA -->
+<section id="page-home" class="page active">
+  <div class="hero">
+    <div class="school-name-hero">🏫 SDN 1 KRONGGEN • Bahasa Indonesia • Ungkapan 💪</div><br>
+    <h1>Halo <span id="helloName">Hebat</span>! <span>Pilih Petualanganmu!</span> 🚀</h1>
+    <p>⚠️ <b>Aturan main:</b> buka <b>📚 Materi</b> dulu sampai <b>18/18</b>, baru <b>Latihan, Tantangan & Game</b> terbuka! 🔓</p>
+    <div class="score-board"><span class="score-pill">📚 Materi: <span id="homeRead">0</span>/18</span><span class="score-pill" id="homeLockInfo">🔒 Terkunci</span><span class="score-pill">⭐ <span id="starHome">0</span></span><span class="score-pill">🏆 <span id="bestHome">0</span></span></div>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-card" style="background:var(--orange)" onclick="go('materi')">
+      <div style="font-size:1rem;font-weight:800;background:#fff;color:#2b2d42;border-radius:999px;display:inline-block;padding:2px 12px">LANGKAH 1</div>
+      <div class="menu-icon">📚</div><h3>Materi</h3><p>18 Ungkapan + contoh • Klik & dengar 🔊</p>
+      <p>📖 <span id="menuRead">0</span>/18 dibaca</p>
+    </div>
+    <div class="menu-card locked" id="cardLatihan" style="background:var(--green)" onclick="go('latihan')">
+      <div class="lock">🔒</div><div style="font-size:1rem;font-weight:800;background:#fff;color:#2b2d42;border-radius:999px;display:inline-block;padding:2px 12px">LANGKAH 2</div>
+      <div class="menu-icon">✏️</div><h3>Latihan</h3><p>10 soal pilihan ganda</p>
+    </div>
+    <div class="menu-card locked" id="cardTantangan" style="background:var(--purple)" onclick="go('tantangan')">
+      <div class="lock">🔒</div><div style="font-size:1rem;font-weight:800;background:#fff;color:#2b2d42;border-radius:999px;display:inline-block;padding:2px 12px">LANGKAH 3</div>
+      <div class="menu-icon">⚡</div><h3>Tantangan</h3><p>60 detik kilat!</p>
+    </div>
+    <div class="menu-card locked" id="cardGame" style="background:var(--blue)" onclick="go('game')">
+      <div class="lock">🔒</div><div style="font-size:1rem;font-weight:800;background:#fff;color:#2b2d42;border-radius:999px;display:inline-block;padding:2px 12px">HADIAH 🎮</div>
+      <div class="menu-icon">🎮</div><h3>Game</h3><p>Memory & Tebak Gambar</p>
+    </div>
+  </div>
+
+  <div class="teacher-card">
+    <img src="6208275892824380429.jpg" alt="Foto Guru dan Siswa SDN 1 Kronggen" onerror="this.outerHTML='<div style=\'font-size:4rem\'>👩‍🏫👨‍🏫📚</div>'">
+    <div class="teacher-info">
+      <h3>🏫 SDN 1 KRONGGEN</h3>
+      <p><b>Perpustakaan SD Negeri Kronggen</b> — Membaca adalah membuka jendela dunia! 🌍</p>
+      <p>👩‍🏫 Bersama Bapak/Ibu Guru hebat dan siswa-siswi ceria. Media ini dibuat untuk belajar <b>Ungkapan Bahasa Indonesia</b> kelas 4-6 dengan cara menyenangkan.</p>
+      <p style="margin-top:6px"><span class="kbd">Ganti foto: timpa file foto-guru.jpg</span></p>
+      <button class="cta" style="background:var(--yellow);margin-top:8px" onclick="go('materi')">📚 Mulai dari Materi!</button>
+    </div>
+  </div>
+</section>
+
+<!-- MATERI -->
+<section id="page-materi" class="page">
+  <span class="sec-title">📚 Materi IDIOM Ajaib</span>
+  <div class="sec-desc">👉 Baca teori dulu, lalu <b>klik kartunya</b> untuk melihat arti + contoh! Klik 🔊 untuk mendengar. Buka <b>semua 18 kartu</b> untuk membuka Latihan, Tantangan & Game! 🔓</div>
+
+  <div class="theory-grid">
+    <div class="theory-card" style="background:#ffdfba">
+      <h3>💡 1. Pengertian IDIOM</h3>
+      <p><b>Idiom = ungkapan</b>, yaitu <b>gabungan kata</b> yang artinya <b>tidak sama</b> dengan arti kata asalnya!</p>
+      <div class="example">Contoh: <b>“Kutu buku”</b> bukan ada kutu di buku, tapi artinya <b>rajin membaca 📚</b><br>Contoh: <b>“Besar kepala”</b> bukan kepala besar, tapi artinya <b>sombong 😤</b></div>
+      <button class="speak-btn" onclick="speak('Idiom adalah gabungan kata yang artinya tidak sama dengan kata asalnya. Contoh kutu buku artinya rajin membaca')">🔊 Dengar!</button>
+    </div>
+    <div class="theory-card" style="background:#caffbf">
+      <h3>🔍 2. Ciri-Ciri IDIOM</h3>
+      <ul>
+        <li>🧩 Terdiri dari <b>2 kata atau lebih</b></li>
+        <li>🎭 Artinya <b>kias</b>, tidak bisa ditebak kata per kata</li>
+        <li>🔒 <b>Tidak bisa diganti</b> sembarangan (kutu buku ≠ kutu majalah)</li>
+        <li>🌟 Membuat kalimat jadi <b>lebih menarik & lucu</b></li>
+      </ul>
+      <button class="speak-btn" onclick="speak('Ciri idiom: terdiri dari dua kata atau lebih, artinya kias, tidak bisa diganti sembarangan')">🔊 Dengar!</button>
+    </div>
+    <div class="theory-card" style="background:#bde0fe">
+      <h3>🚀 3. Kegunaan IDIOM</h3>
+      <ul>
+        <li>📖 Membuat <b>cerita & dongeng</b> lebih seru</li>
+        <li>🧠 Menunjukkan kita <b>pintar berbahasa</b></li>
+        <li>💬 Ngobrol jadi <b>sopan & lucu</b></li>
+        <li>🏆 Membantu memahami <b>bacaan & soal</b> Bahasa Indonesia</li>
+      </ul>
+      <button class="speak-btn" onclick="speak('Kegunaan idiom: membuat cerita seru, pintar berbahasa, dan membantu memahami bacaan')">🔊 Dengar!</button>
+    </div>
+  </div>
+
+  <div class="lock-note">📖 Progres membaca: <b><span id="readCount">0</span>/18</b> • <span id="readStatus">🔒 Latihan, Tantangan & Game masih terkunci</span>
+    <div class="progress" style="margin-top:8px"><div class="progress-fill" id="readProg" style="width:0%"></div></div>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterIdiom('semua',this)">🌈 Semua</button>
+    <button class="filter-btn" onclick="filterIdiom('sehari-hari',this)">☀️ Sehari-hari</button>
+    <button class="filter-btn" onclick="filterIdiom('hewan',this)">🐾 Hewan</button>
+    <button class="filter-btn" onclick="filterIdiom('seru',this)">🎪 Seru & Lucu</button>
+  </div>
+  <div class="grid" id="idiomGrid"></div>
+</section>
+
+<!-- LATIHAN -->
+<section id="page-latihan" class="page">
+  <span class="sec-title">✏️ Latihan Soal - Misi 10 Soal!</span>
+  <div class="sec-desc">Pilih jawaban yang benar! Setiap benar dapat <b>10 poin + 1 ⭐</b>. Di akhir ada pembahasan lucu! Skor terbaikmu disimpan otomatis 🏆</div>
+  <div class="quiz-box">
+    <div class="score-board"><span class="score-pill">❓ Soal <span id="qNum">1</span>/10</span><span class="score-pill">✅ Skor: <span id="qScore">0</span></span><span class="score-pill">⭐ Bintang: <span id="qStar">0</span></span></div>
+    <div class="progress"><div class="progress-fill" id="qProg"></div></div>
+    <div id="quizArea"></div>
+    <div class="feedback" id="qFeed"></div>
+    <div style="text-align:center"><button class="next-btn" id="qNext" onclick="nextQuiz()">Soal Berikutnya ➡️</button></div>
+    <div style="text-align:center;margin-top:10px"><button class="cta" style="background:var(--yellow);font-size:.9rem" onclick="startQuiz()">🔄 Ulangi Latihan</button></div>
+  </div>
+</section>
+
+<!-- TANTANGAN -->
+<section id="page-tantangan" class="page">
+  <span class="sec-title">⚡ Tantangan 60 Detik!</span>
+  <div class="sec-desc">Berani cepat? Jawab <b>sebanyak-banyaknya dalam 60 detik!</b> Salah = -5 poin. Beruntun 3x benar = bonus 🔥! <span class="kbd">Tips: hafalkan dulu di Materi!</span></div>
+  <div class="challenge-card">
+    <div id="chalStart">
+      <div style="font-size:4rem">⏱️🔥🏆</div>
+      <h2>Siap Jadi Kilat Ungkapan?</h2>
+      <p>60 detik, soal acak terus! Kumpulkan skor tertinggi!</p>
+      <p class="score-pill" style="display:inline-block;margin:8px">🏆 Rekor: <span id="bestChal">0</span></p><br>
+      <button class="cta" style="background:var(--red);color:#fff;font-size:1.2rem;margin-top:10px" onclick="startChallenge()">⚡ MULAI TANTANGAN!</button>
+    </div>
+    <div id="chalPlay" style="display:none">
+      <div class="timer-big" id="chalTimer">60</div>
+      <div class="score-board"><span class="score-pill">✅ <span id="cScore">0</span></span><span class="score-pill">🔥 Streak: <span id="cStreak">0</span></span></div>
+      <div class="progress"><div class="progress-fill" id="cProg"></div></div>
+      <div id="chalArea"></div>
+      <div class="feedback" id="cFeed"></div>
+    </div>
+    <div id="chalEnd" style="display:none" class="result">
+      <div class="result-emoji" id="chalEmoji">🏆</div>
+      <h2 id="chalTitle">Waktu Habis!</h2>
+      <div class="stars" id="chalStars">⭐⭐⭐</div>
+      <h3>Skor: <span id="chalFinal">0</span> | Benar: <span id="chalCorrect">0</span></h3>
+      <p id="chalMsg"></p>
+      <button class="cta" style="background:var(--green);color:#fff" onclick="startChallenge()">🔄 Main Lagi!</button>
+      <button class="cta" style="background:#fff" onclick="go('game')">🎮 Main Game Lain</button>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section id="page-game" class="page">
+  <span class="sec-title">🎮 Arena Game IDIOM!</span>
+  <div class="sec-desc">Pilih gamemu! <b>Memory Match</b> untuk melatih ingatan, <b>Tebak Gambar</b> untuk melatih kecepatan! Gambarnya sudah menunjukkan artinya! Menang dapat ⭐!</div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="switchGame('memory',this)">🃏 Memory Match</button>
+    <button class="filter-btn" onclick="switchGame('emoji',this)">🖼️ Tebak Gambar</button>
+  </div>
+
+  <div id="game-memory" class="quiz-box">
+    <h3 style="text-align:center">🃏 Temukan Pasangan Ungkapan & Artinya!</h3>
+    <p style="text-align:center">Klik 2 kartu. Cocok = +20 poin! <button class="cta" style="background:var(--pink);color:#fff;font-size:.85rem;padding:8px 16px" onclick="initMemory()">🔄 Acak Ulang</button></p>
+    <div class="score-board"><span class="score-pill">✅ Skor: <span id="mScore">0</span></span><span class="score-pill">👣 Langkah: <span id="mMoves">0</span></span><span class="score-pill">🎯 Pasangan: <span id="mPair">0</span>/6</span></div>
+    <div class="memory-grid" id="memGrid"></div>
+    <div id="memWin" class="result" style="display:none">
+      <div class="result-emoji">🎉🥳🎊</div>
+      <h2>YEAY! Kamu Menang!</h2>
+      <div class="stars">⭐⭐⭐</div>
+      <p>Skor <b id="mFinal">0</b> dalam <b id="mFinalMoves">0</b> langkah! Hebat!</p>
+      <button class="cta" style="background:var(--yellow)" onclick="initMemory()">🔄 Main Lagi</button>
+    </div>
+  </div>
+
+  <div id="game-emoji" class="quiz-box" style="display:none">
+    <h3 style="text-align:center">🖼️ Lihat Gambar, Tebak IDIOM-nya!</h3>
+    <p style="text-align:center">Soal 1/8 • Benar +15 poin! Perhatikan gambarnya baik-baik! 👀</p>
+    <div class="score-board"><span class="score-pill">❓ <span id="eNum">1</span>/8</span><span class="score-pill">✅ Skor: <span id="eScore">0</span></span></div>
+    <div class="progress"><div class="progress-fill" id="eProg"></div></div>
+    <div id="emojiArea" style="text-align:center"></div>
+    <div class="feedback" id="eFeed"></div>
+    <div style="text-align:center"><button class="next-btn" id="eNext" onclick="nextEmoji()">Lanjut ➡️</button>
+    <div id="emojiEnd" class="result" style="display:none">
+      <div class="result-emoji">🌟</div><h2>Game Selesai!</h2><div class="stars" id="eStars">⭐⭐⭐</div>
+      <h3>Skor: <span id="eFinal">0</span>/120</h3><p id="eMsg"></p>
+      <button class="cta" style="background:var(--blue);color:#fff" onclick="initEmojiGame()">🔄 Main Lagi</button>
+    </div></div>
+  </div>
+</section>
+
+<footer>🏫 SDN 1 KRONGGEN • Made with 💖 untuk Anak Hebat • Ungkapan Fun World Bahasa Indonesia • Bisa dibuka offline! 📴<br>🎵 Klik tombol musik kanan bawah untuk menyalakan lagu ceria!</footer>
+</div>
+
+<script>
+const IDIOMS = [
+ {en:"Kutu buku", arti:"Rajin membaca", ex:"Dina kutu buku, setiap hari ke perpustakaan.", exid:"Artinya Dina rajin membaca buku.", emoji:"📚🐛", pic:"🧒📚📚📚👓", scene:"Gambar: anak duduk dikelilingi tumpukan buku, asyik membaca", cat:"sehari-hari", color:"#ff4d8d", tip:"Seperti kutu yang selalu menempel di buku!"},
+ {en:"Tangan kanan", arti:"Orang kepercayaan", ex:"Budi menjadi tangan kanan Pak Lurah.", exid:"Artinya Budi orang kepercayaan Pak Lurah.", emoji:"🤝⭐", pic:"👨‍💼🤝🧒⭐", scene:"Gambar: Pak Lurah bersalaman percaya dengan Budi", cat:"sehari-hari", color:"#ff9f1c", tip:"Tangan kanan itu yang paling bisa diandalkan!"},
+ {en:"Besar kepala", arti:"Sombong", ex:"Jangan besar kepala kalau menang lomba.", exid:"Artinya jangan sombong kalau menang.", emoji:"😤🎈", pic:"🤯🏆😎", scene:"Gambar: kepala membesar seperti balon karena sombong menang", cat:"sehari-hari", color:"#3a86ff", tip:"Kepala besar = sombong, bukan kepala beneran besar!"},
+ {en:"Rendah hati", arti:"Tidak sombong", ex:"Meski juara, Sita tetap rendah hati.", exid:"Artinya Sita tidak sombong.", emoji:"🙏😊", pic:"🏆🙇😊", scene:"Gambar: juara menunduk sopan, tidak sombong", cat:"sehari-hari", color:"#2ec4b6", tip:"Rendah hati itu baik, disayang teman!"},
+ {en:"Panjang tangan", arti:"Suka mencuri", ex:"Hati-hati, ada anak panjang tangan di pasar.", exid:"Artinya ada yang suka mencuri.", emoji:"✋🍎", pic:"🦾➡️👛😱", scene:"Gambar: tangan super panjang mengambil dompet orang", cat:"sehari-hari", color:"#8338ec", tip:"Tangannya panjang sampai bisa mengambil milik orang!"},
+ {en:"Mata duitan", arti:"Selalu memikirkan uang", ex:"Jangan jadi anak mata duitan.", exid:"Artinya jangan selalu memikirkan uang.", emoji:"👀💰", pic:"👀💵💵🤑", scene:"Gambar: mata berubah jadi uang dolar", cat:"sehari-hari", color:"#ef476f", tip:"Matanya hanya melihat uang melulu!"},
+ {en:"Kambing hitam", arti:"Orang yang disalahkan", ex:"Dia dijadikan kambing hitam atas kaca yang pecah.", exid:"Artinya dia disalahkan padahal tidak salah.", emoji:"🐐⬛", pic:"🐐⬛👉😢", scene:"Gambar: semua jari menunjuk ke kambing hitam yang sedih", cat:"hewan", color:"#ff9f1c", tip:"Kambingnya tidak salah, tapi disalahkan!"},
+ {en:"Kuda hitam", arti:"Pemenang tak terduga", ex:"Tim itu menjadi kuda hitam di lomba sepak bola.", exid:"Artinya menang padahal tidak diunggulkan.", emoji:"🐴🏆", pic:"🐴⬛🏁🏆🎉", scene:"Gambar: kuda hitam menyalip menang balapan, semua kaget", cat:"hewan", color:"#ff595e", tip:"Kuda hitam datang tiba-tiba lalu menang!"},
+ {en:"Tikus kantor", arti:"Orang yang mencuri uang di kantor", ex:"Tikus kantor itu ditangkap polisi.", exid:"Artinya pencuri uang kantor ditangkap.", emoji:"🐭🏢", pic:"🐭💼💰🚓", scene:"Gambar: tikus membawa uang kantor ditangkap polisi", cat:"hewan", color:"#3a86ff", tip:"Seperti tikus yang diam-diam mengambil makanan!"},
+ {en:"Buaya darat", arti:"Orang yang suka menipu", ex:"Hati-hati dengan buaya darat itu.", exid:"Artinya hati-hati dengan penipu.", emoji:"🐊⚠️", pic:"🐊🎭🤥", scene:"Gambar: buaya pakai topeng baik padahal menipu", cat:"hewan", color:"#06d6a0", tip:"Buayanya di darat, pura-pura baik!"},
+ {en:"Katak dalam tempurung", arti:"Pengetahuannya sedikit", ex:"Jangan seperti katak dalam tempurung.", exid:"Artinya jangan malas belajar dan jalan-jalan.", emoji:"🐸🥥", pic:"🐸🥥🌏🔒", scene:"Gambar: katak di tempurung sempit mengira dunia kecil", cat:"hewan", color:"#8ac926", tip:"Katak mengira dunia hanya sebesar tempurung!"},
+ {en:"Burung hantu", arti:"Orang yang suka begadang", ex:"Ayah seperti burung hantu saat ronda malam.", exid:"Artinya ayah berjaga sampai malam.", emoji:"🦉🌙", pic:"🦉🌙☕👀", scene:"Gambar: burung hantu melek malam sambil minum kopi", cat:"hewan", color:"#ff9f1c", tip:"Burung hantu melek terus di malam hari!"},
+ {en:"Naik daun", arti:"Sedang terkenal / beruntung", ex:"Penjual cilok itu sedang naik daun.", exid:"Artinya dagangannya laris dan terkenal.", emoji:"🍃⬆️", pic:"📈🍃🌟🎉", scene:"Gambar: daun terbang naik ke atas jadi bintang terkenal", cat:"seru", color:"#ff4d8d", tip:"Daunnya naik ke atas, nasibnya ikut naik!"},
+ {en:"Turun tangan", arti:"Ikut membantu", ex:"Pak Guru turun tangan membersihkan kelas.", exid:"Artinya Pak Guru ikut membantu.", emoji:"🤲🧹", pic:"🧑‍🏫🤲🧹✨", scene:"Gambar: Pak Guru turun ikut menyapu kelas", cat:"seru", color:"#e07a5f", tip:"Tangannya turun untuk membantu!"},
+ {en:"Angkat tangan", arti:"Menyerah", ex:"Akhirnya tim lawan angkat tangan.", exid:"Artinya tim lawan menyerah.", emoji:"🙌😅", pic:"🙋🏳️😞", scene:"Gambar: mengangkat tangan sambil kibarkan bendera putih", cat:"seru", color:"#ef476f", tip:"Tangan diangkat = tidak lanjut lagi!"},
+ {en:"Patah hati", arti:"Sangat kecewa / sedih", ex:"Kiki patah hati karena layangannya putus.", exid:"Artinya Kiki sangat sedih.", emoji:"💔🪁", pic:"💔😭🪁✂️", scene:"Gambar: hati retak pecah, anak menangis layangan putus", cat:"seru", color:"#6a4c93", tip:"Hatinya seperti pecah karena sedih!"},
+ {en:"Lapang dada", arti:"Sabar dan ikhlas", ex:"Kita harus lapang dada saat kalah lomba.", exid:"Artinya harus sabar dan ikhlas.", emoji:"😌💖", pic:"😌💖🤲🌈", scene:"Gambar: dada lapang, hati tenang memaafkan", cat:"seru", color:"#1982c4", tip:"Dadanya lapang, hatinya tenang!"},
+ {en:"Panjang akal", arti:"Cerdik dan banyak ide", ex:"Nisa panjang akal, selalu punya solusi.", exid:"Artinya Nisa cerdik dan kreatif.", emoji:"🧠💡", pic:"🧠💡💡💡🧒", scene:"Gambar: otak memancarkan banyak lampu ide cemerlang", cat:"seru", color:"#2ec4b6", tip:"Akalnya panjang sampai banyak ide!"},
+];
+
+let stars = parseInt(localStorage.getItem('idiom_stars')||'0');
+let bestQuiz = parseInt(localStorage.getItem('idiom_best_quiz')||'0');
+let bestChal = parseInt(localStorage.getItem('idiom_best_chal')||'0');
+function save(){localStorage.setItem('idiom_stars',stars);localStorage.setItem('idiom_best_quiz',bestQuiz);localStorage.setItem('idiom_best_chal',bestChal);updateHome()}
+function addStars(n){stars+=n;save();}
+function updateHome(){try{document.getElementById('starHome').textContent=stars;document.getElementById('bestHome').textContent=Math.max(bestQuiz,bestChal);document.getElementById('bestChal').textContent=bestChal;}catch(e){} updateLocks();}
+// LOGIN + KUNCI MATERI PER SISWA + ABSENSI & NILAI
+let studentName=localStorage.getItem('sdn_student')||'';
+let readSet=new Set();
+let materiDone=false;
+function readKey(){return 'sdn_read_'+(studentName||'_tamu');}
+function doneKey(){return 'sdn_materi_done_'+(studentName||'_tamu');}
+function loadProgress(){try{readSet=new Set(JSON.parse(localStorage.getItem(readKey())||'[]'));}catch(e){readSet=new Set();}materiDone=localStorage.getItem(doneKey())==='1';}
+function saveProgress(){try{localStorage.setItem(readKey(),JSON.stringify([...readSet]));if(materiDone)localStorage.setItem(doneKey(),'1');}catch(e){}}
+loadProgress();
+const GURU_PASS='guru123';
+function getNilaiDB(){try{return JSON.parse(localStorage.getItem('sdn_nilai')||'{}')}catch(e){return{}}}
+function saveNilai(jenis,skor){if(!studentName)return;let db=getNilaiDB();let r=db[studentName]||{nama:studentName,latihan:0,tantangan:0,memory:0,gambar:0,bintang:0,materi:0,terakhir:''};if(jenis==='latihan')r.latihan=Math.max(r.latihan,skor);if(jenis==='tantangan')r.tantangan=Math.max(r.tantangan,skor);if(jenis==='memory')r.memory=Math.max(r.memory,skor);if(jenis==='gambar')r.gambar=Math.max(r.gambar,skor);r.bintang=stars;r.materi=readSet.size;let d=new Date();r.terakhir=d.toLocaleDateString('id-ID')+' '+d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});db[studentName]=r;localStorage.setItem('sdn_nilai',JSON.stringify(db));}
+function pushAbsensi(nama){try{let a=JSON.parse(localStorage.getItem('sdn_absensi')||'[]');let d=new Date();let tgl=d.toLocaleDateString('id-ID');let jam=d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});let today=a.find(x=>x.nama===nama&&x.tanggal===tgl);if(!today){a.push({nama:nama,tanggal:tgl,jam:jam});}else{today.jam=jam;}localStorage.setItem('sdn_absensi',JSON.stringify(a));}catch(e){}}
+function doLogin(){let n=document.getElementById('loginName').value.trim();let t=document.getElementById('loginToken').value.trim();let err=document.getElementById('loginError');if(!n){err.style.display='block';err.textContent='⚠️ Isi dulu namamu ya!';return;}if(t!=='12345'){err.style.display='block';err.textContent='❌ Token salah! Token yang benar: 12345';playTone(200);return;}studentName=n;localStorage.setItem('sdn_student',n);loadProgress();pushAbsensi(n);saveNilai('login',0);document.getElementById('loginOverlay').style.display='none';document.getElementById('helloName').textContent=n;document.getElementById('studentBadge').textContent='👋 '+n;renderIdiom('semua');updateHome();updateLocks();playWin();confetti();}
+// GURU
+function openGuru(){document.getElementById('guruOverlay').style.display='flex';document.getElementById('guruLoginBox').style.display='block';document.getElementById('guruDashBox').style.display='none';}
+function closeGuru(){document.getElementById('guruOverlay').style.display='none';}
+function doGuruLogin(){let p=document.getElementById('guruPass').value;let err=document.getElementById('guruError');if(p===GURU_PASS){document.getElementById('guruLoginBox').style.display='none';document.getElementById('guruDashBox').style.display='block';renderGuru();playWin();}else{err.style.display='block';err.textContent='❌ Kode guru salah! Default: guru123';playTone(200);}}
+function guruTab(which,btn){document.querySelectorAll('#guruDashBox .filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('tab-nilai').style.display=which==='nilai'?'block':'none';document.getElementById('tab-absen').style.display=which==='absen'?'block':'none';}
+function renderGuru(){let db=getNilaiDB();let names=Object.keys(db).sort();let html='<h3>📊 Rekap Nilai ('+names.length+' siswa)</h3>';if(!names.length)html+='<p>Belum ada data. Minta siswa login & mainkan latihan/game.</p>';else{html+='<div style="overflow:auto"><table class="guru-table"><tr><th>No</th><th>Nama</th><th>Latihan /100</th><th>Tantangan</th><th>Memory</th><th>Tebak Gambar /120</th><th>⭐</th><th>Materi</th><th>Terakhir</th></tr>';names.forEach((n,i)=>{let r=db[n];html+='<tr><td>'+(i+1)+'</td><td><b>'+n+'</b></td><td>'+(r.latihan||0)+'</td><td>'+(r.tantangan||0)+'</td><td>'+(r.memory||0)+'</td><td>'+(r.gambar||0)+'</td><td>'+(r.bintang||0)+'</td><td>'+(r.materi||0)+'/18</td><td>'+(r.terakhir||'-')+'</td></tr>'});html+='</table></div>';}document.getElementById('tab-nilai').innerHTML=html;let a=[];try{a=JSON.parse(localStorage.getItem('sdn_absensi')||'[]')}catch(e){}a.sort((x,y)=>(y.tanggal+y.jam).localeCompare(x.tanggal+x.jam));let h='<h3>📝 Absensi ('+a.length+' kehadiran)</h3>';if(!a.length)h+='<p>Belum ada absensi.</p>';else{h+='<div style="overflow:auto"><table class="guru-table"><tr><th>No</th><th>Nama</th><th>Tanggal</th><th>Jam</th></tr>';a.slice(0,200).forEach((x,i)=>{h+='<tr><td>'+(i+1)+'</td><td>'+x.nama+'</td><td>'+x.tanggal+'</td><td>'+x.jam+'</td></tr>'});h+='</table></div>';}document.getElementById('tab-absen').innerHTML=h;}
+function exportCSV(){let db=getNilaiDB();let rows=['Nama,Latihan,Tantangan,Memory,TebakGambar,Bintang,Materi,Terakhir'];Object.keys(db).forEach(n=>{let r=db[n];rows.push('"'+n+'",'+r.latihan+','+r.tantangan+','+r.memory+','+r.gambar+','+r.bintang+',"'+r.materi+'/18","'+r.terakhir+'"')});rows.push('');rows.push('Absensi');rows.push('Nama,Tanggal,Jam');try{let a=JSON.parse(localStorage.getItem('sdn_absensi')||'[]');a.forEach(x=>rows.push('"'+x.nama+'","'+x.tanggal+'","'+x.jam+'"'))}catch(e){}let blob=new Blob([rows.join('\n')],{type:'text/csv'});let u=URL.createObjectURL(blob);let l=document.createElement('a');l.href=u;l.download='rekap-SDN1-Kronggen.csv';l.click();}
+function clearGuruData(){if(!confirm('Hapus SEMUA rekap nilai, absensi & kunci materi?'))return;localStorage.removeItem('sdn_nilai');localStorage.removeItem('sdn_absensi');Object.keys(localStorage).filter(k=>k.indexOf('sdn_read_')===0||k.indexOf('sdn_materi_done_')===0||k==='sdn_read'||k==='sdn_materi_done').forEach(k=>localStorage.removeItem(k));loadProgress();renderIdiom('semua');updateLocks();renderGuru();}
+function logout(){localStorage.removeItem('sdn_student');location.reload();}
+function isLocked(page){return !materiDone && (page==='latihan'||page==='tantangan'||page==='game');}
+function requireUnlocked(jenis){if(isLocked(jenis)){alert('🔒 Selesaikan MATERI dulu ('+readSet.size+'/18) ya, '+(studentName||'Hebat')+'! Buka semua 18 kartu untuk membuka '+jenis.toUpperCase()+' 📚');go('materi');return false;}return true;}
+function markRead(key){if(!readSet.has(key)){readSet.add(key);if(readSet.size>=18){materiDone=true;confetti();playWin();addStars(5);}saveProgress();updateLocks();}}
+function updateLocks(){let c=readSet.size;try{document.getElementById('readCount').textContent=c;document.getElementById('readProg').style.width=(c/18*100)+'%';document.getElementById('homeRead').textContent=c;document.getElementById('menuRead').textContent=c;}catch(e){}let locked=!materiDone;try{document.getElementById('readStatus').textContent=locked?('🔒 Latihan, Tantangan & Game masih terkunci ('+c+'/18)'):('✅ Terbuka! Kamu sudah membaca semua! +5⭐');document.getElementById('homeLockInfo').textContent=locked?('🔒 Terkunci ('+c+'/18)'):('✅ Terbuka!');}catch(e){}['cardLatihan','cardTantangan','cardGame'].forEach(id=>{let el=document.getElementById(id);if(!el)return;if(locked){el.classList.add('locked');el.querySelector('.lock').textContent='🔒';}else{el.classList.remove('locked');let l=el.querySelector('.lock');if(l)l.textContent='✅';}});[['navLatihan','✏️ Latihan'],['navTantangan','⚡ Tantangan'],['navGame','🎮 Game']].forEach(([id,label])=>{let el=document.getElementById(id);if(!el)return;el.textContent=label+(locked?' 🔒':' ✅');if(locked)el.classList.add('nav-lock');else el.classList.remove('nav-lock');});}
+function toggleMusicPanel(){let p=document.getElementById('musicPanel');p.classList.toggle('open');}
+function speak(t){try{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='id-ID';u.rate=.9;speechSynthesis.speak(u);}catch(e){} playTone(600);}
+function playTone(f){try{let c=new (window.AudioContext||window.webkitAudioContext)();let o=c.createOscillator();let g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f||600;o.type='sine';g.gain.value=.15;o.start();setTimeout(()=>o.stop(),200);}catch(e){}}
+function playClick(){playTone(750);}
+document.addEventListener('click',function(e){let t=e.target.closest('button,.menu-card,.mem-card,.idiom-card,.filter-btn,.nav-btn,.cta,.opt-btn');if(t){try{playClick();}catch(err){}}},true);
+function playWin(){[523,659,784,1046].forEach((f,i)=>setTimeout(()=>playTone(f),i*150));}
+function confetti(){let cv=document.getElementById('confetti'),ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;let ps=[];let cols=['#ff4d8d','#ff9f1c','#ffcf00','#2ec4b6','#3a86ff','#8338ec'];for(let i=0;i<150;i++)ps.push({x:Math.random()*cv.width,y:-20-Math.random()*200,s:5+Math.random()*7,c:cols[i%6],vy:2+Math.random()*4,vx:-2+Math.random()*4,r:Math.random()*6.28});let t=0;function draw(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=.1;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.6);ctx.restore()});t++;if(t<180)requestAnimationFrame(draw);else ctx.clearRect(0,0,cv.width,cv.height)}draw();}
+
+// NAV
+function go(id){if(isLocked(id)){alert('🔒 Baca MATERI dulu sampai 18/18 ya, '+ (studentName||'Hebat') +'! Baru Latihan, Tantangan & Game terbuka. Semangat! 📚');id='materi';}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));let map={home:0,materi:1,latihan:2,tantangan:3,game:4};let btns=document.querySelectorAll('.nav-btn');if(btns[map[id]])btns[map[id]].classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+
+// BUBBLES
+(function(){let w=document.getElementById('bubbles');let cols=['#ff4d8d','#ff9f1c','#ffcf00','#2ec4b6','#3a86ff','#8338ec'];for(let i=0;i<14;i++){let d=document.createElement('div');d.className='bubble';let s=30+Math.random()*80;d.style.width=d.style.height=s+'px';d.style.background=cols[i%6];d.style.left=Math.random()*100+'%';d.style.top=Math.random()*100+'%';d.style.animationDelay=(Math.random()*5)+'s';w.appendChild(d)}})();
+
+// MATERI
+function renderIdiom(filter){let g=document.getElementById('idiomGrid');g.innerHTML='';IDIOMS.filter(x=>filter==='semua'||x.cat===filter).forEach(it=>{let d=document.createElement('div');d.className='idiom-card';let key=it.en;d.innerHTML=`<div class="idiom-inner"><div class="face front" style="background:${it.color}"><div class="idiom-emoji">${it.emoji}</div><div class="idiom-en">${it.en}</div><span class="idiom-cat">${it.cat==='sehari-hari'?'☀️ Sehari-hari':it.cat==='hewan'?'🐾 Hewan':'🎪 Seru'}</span><div class="tap-hint">👆 Klik untuk arti!</div></div><div class="face back"><div style="font-size:2rem">${it.emoji}</div><div style="font-weight:800">${it.en}</div><div class="meaning">💡 ${it.arti}</div><div class="example">📝 ${it.ex}<br>💡 <i>${it.exid}</i></div><div style="font-size:.85rem;background:#e0fbfc;padding:6px 10px;border-radius:10px">🧠 ${it.tip}</div><button class="speak-btn" onclick="event.stopPropagation();speak('${it.en.replace(/'/g,"")}')">🔊 Dengar!</button></div></div>`;if(readSet.has(key)){d.classList.add('flipped');}d.onclick=()=>{d.classList.toggle('flipped');playTone(500);markRead(key);};g.appendChild(d)});}
+function filterIdiom(f,btn){document.querySelectorAll('#page-materi .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderIdiom(f);}
+renderIdiom('semua');
+
+// LATIHAN
+let QUIZ=[],qi=0,qScore=0,qStars=0;
+function makeQuiz(){let pool=[...IDIOMS].sort(()=>Math.random()-.5).slice(0,10);QUIZ=pool.map(it=>{let wrong=[...IDIOMS].filter(x=>x.en!==it.en).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.arti);let opts=[...wrong,it.arti].sort(()=>Math.random()-.5);return{...it,opts}});}
+function startQuiz(){makeQuiz();qi=0;qScore=0;qStars=0;document.getElementById('qScore').textContent=0;document.getElementById('qStar').textContent=0;showQuiz();}
+function showQuiz(){if(qi>=10){endQuiz();return}let q=QUIZ[qi];document.getElementById('qNum').textContent=qi+1;document.getElementById('qProg').style.width=(qi*10)+'%';document.getElementById('qFeed').className='feedback';document.getElementById('qNext').className='next-btn';document.getElementById('quizArea').innerHTML=`<div class="q-emoji">${q.emoji}</div><div class="q-text">Apa arti dari "<span style="color:var(--pink)">${q.en}</span>"?</div><div>${q.opts.map(o=>`<button class="opt-btn" onclick="answerQuiz(this,'${o.replace(/'/g,"")}')">${o}</button>`).join('')}</div>`;speak(q.en);}
+function answerQuiz(btn,ans){if(!requireUnlocked('latihan'))return;let q=QUIZ[qi];let btns=document.querySelectorAll('#quizArea .opt-btn');btns.forEach(b=>b.disabled=true);let feed=document.getElementById('qFeed');if(ans===q.arti){btn.classList.add('correct');qScore+=10;qStars+=1;addStars(1);feed.className='feedback show ok';feed.innerHTML=`🎉 <b>BETUL!</b> ${q.en} = ${q.arti}<br>🧠 ${q.tip}`;playWin();if(qi===9)confetti();}else{btn.classList.add('wrong');btns.forEach(b=>{if(b.textContent===q.arti)b.classList.add('correct')});feed.className='feedback show no';feed.innerHTML=`😅 <b>Ups!</b> Jawaban benar: <b>${q.arti}</b><br>📝 ${q.ex}<br>💡 ${q.exid}`;playTone(200);}document.getElementById('qScore').textContent=qScore;document.getElementById('qStar').textContent=qStars;document.getElementById('qNext').className='next-btn show';}
+function nextQuiz(){qi++;showQuiz();}
+function endQuiz(){document.getElementById('qProg').style.width='100%';bestQuiz=Math.max(bestQuiz,qScore);save();saveNilai('latihan',qScore);let emoji=qScore>=90?'🏆🥳':qScore>=70?'🌟😄':qScore>=50?'😊💪':'💪📚';let msg=qScore>=90?'LUAR BIASA! Kamu Master Ungkapan!':qScore>=70?'Hebat! Sedikit lagi sempurna!':qScore>=50?'Bagus! Ayo belajar lagi!':'Tidak apa-apa! Buka Materi lalu coba lagi!';document.getElementById('quizArea').innerHTML=`<div class="result"><div class="result-emoji">${emoji}</div><h2>${msg}</h2><div class="stars">${qScore>=90?'⭐⭐⭐':qScore>=70?'⭐⭐':qScore>=50?'⭐':'💫'}</div><h3>Skor: ${qScore}/100 • ⭐ ${qStars}</h3><p>🏆 Skor terbaik: ${bestQuiz}</p><br><button class="cta" style="background:var(--green);color:#fff" onclick="startQuiz()">🔄 Coba Lagi!</button> <button class="cta" style="background:var(--purple);color:#fff" onclick="go('tantangan')">⚡ Tantangan!</button></div>`;if(qScore>=70)confetti();playWin();}
+startQuiz();
+
+// TANTANGAN
+let cTimer,cTime,cScore,cStreak,cCorrect,cQ;
+function startChallenge(){if(!requireUnlocked('tantangan'))return;document.getElementById('chalStart').style.display='none';document.getElementById('chalEnd').style.display='none';document.getElementById('chalPlay').style.display='block';cScore=0;cStreak=0;cCorrect=0;cTime=60;updateChal();nextChal();clearInterval(cTimer);cTimer=setInterval(()=>{cTime--;document.getElementById('chalTimer').textContent=cTime;document.getElementById('cProg').style.width=(cTime/60*100)+'%';if(cTime<=10)playTone(400);if(cTime<=0){clearInterval(cTimer);endChal();}},1000);}
+function updateChal(){document.getElementById('cScore').textContent=cScore;document.getElementById('cStreak').textContent=cStreak;}
+function nextChal(){let it=IDIOMS[Math.floor(Math.random()*IDIOMS.length)];let wrong=[...IDIOMS].filter(x=>x.en!==it.en).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.arti);cQ={...it,opts:[...wrong,it.arti].sort(()=>Math.random()-.5)};document.getElementById('cFeed').className='feedback';document.getElementById('chalArea').innerHTML=`<div class="q-emoji">${cQ.emoji}</div><div class="q-text">${cQ.en} = ?</div><div>${cQ.opts.map(o=>`<button class="opt-btn" onclick="answerChal('${o.replace(/'/g,"")}')">${o}</button>`).join('')}</div>`;}
+function answerChal(ans){if(isLocked('tantangan')){requireUnlocked('tantangan');return;}if(cTime<=0)return;let feed=document.getElementById('cFeed');if(ans===cQ.arti){let pts=10+(cStreak>=3?5:0);cScore+=pts;cStreak++;cCorrect++;feed.className='feedback show ok';feed.innerHTML=cStreak>=3?`🔥🔥 <b>COMBO x${cStreak}!</b> +${pts}`:`✅ Cepat! +${pts}`;playTone(700);}else{cScore=Math.max(0,cScore-5);cStreak=0;feed.className='feedback show no';feed.innerHTML=`❌ Ups! = <b>${cQ.arti}</b> (-5)`;playTone(200);}updateChal();setTimeout(nextChal,450);}
+function endChal(){document.getElementById('chalPlay').style.display='none';document.getElementById('chalEnd').style.display='block';document.getElementById('chalFinal').textContent=cScore;document.getElementById('chalCorrect').textContent=cCorrect;let newBest=cScore>bestChal;if(newBest){bestChal=cScore;addStars(3);}else if(cScore>=50)addStars(1);save();saveNilai('tantangan',cScore);document.getElementById('chalStars').textContent=cScore>=100?'⭐⭐⭐':cScore>=60?'⭐⭐':cScore>=30?'⭐':'💫';document.getElementById('chalMsg').innerHTML=newBest?`🎉 <b>REKOR BARU!</b> Kamu dapat bonus 3⭐!`:`Terus berlatih untuk kalahkan rekor ${bestChal}!`;document.getElementById('chalEmoji').textContent=cScore>=100?'🏆🥳':cScore>=60?'🌟😎':'💪😊';if(cScore>=60){confetti();playWin();}}
+
+// GAME switch
+function switchGame(which,btn){document.querySelectorAll('#page-game .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('game-memory').style.display=which==='memory'?'block':'none';document.getElementById('game-emoji').style.display=which==='emoji'?'block':'none';}
+
+// MEMORY
+let memFirst=null,memLock=false,mScore=0,mMoves=0,mPair=0;
+function initMemory(){let picks=[...IDIOMS].sort(()=>Math.random()-.5).slice(0,6);let cards=[];picks.forEach((p,i)=>{cards.push({key:i,txt:p.en});cards.push({key:i,txt:p.arti})});cards.sort(()=>Math.random()-.5);let g=document.getElementById('memGrid');g.innerHTML='';document.getElementById('memWin').style.display='none';mScore=0;mMoves=0;mPair=0;memFirst=null;memLock=false;updMem();cards.forEach(c=>{let d=document.createElement('div');d.className='mem-card closed';d.textContent='❓';d.dataset.key=c.key;d.dataset.txt=c.txt;d.onclick=()=>flipMem(d);g.appendChild(d)});}
+function updMem(){document.getElementById('mScore').textContent=mScore;document.getElementById('mMoves').textContent=mMoves;document.getElementById('mPair').textContent=mPair;}
+function flipMem(d){if(isLocked('game')){requireUnlocked('game');return;}if(memLock||d.classList.contains('matched')||d.classList.contains('open'))return;d.classList.remove('closed');d.classList.add('open');d.textContent=d.dataset.txt;playTone(500);if(!memFirst){memFirst=d;return}mMoves++;if(memFirst.dataset.key===d.dataset.key){memFirst.classList.add('matched');d.classList.add('matched');memFirst.classList.remove('open');d.classList.remove('open');mScore+=20;mPair++;addStars(1);playWin();memFirst=null;if(mPair>=6){setTimeout(()=>{document.getElementById('memWin').style.display='block';document.getElementById('mFinal').textContent=mScore;document.getElementById('mFinalMoves').textContent=mMoves;confetti();addStars(2);saveNilai('memory',mScore);},500)}}else{memLock=true;let a=memFirst;memFirst=null;setTimeout(()=>{a.classList.add('closed');a.classList.remove('open');a.textContent='❓';d.classList.add('closed');d.classList.remove('open');d.textContent='❓';memLock=false;},800);}updMem();}
+initMemory();
+
+// EMOJI GAME
+let EQ=[],ei=0,eScore=0;
+function initEmojiGame(){EQ=[...IDIOMS].sort(()=>Math.random()-.5).slice(0,8).map(it=>{let w=[...IDIOMS].filter(x=>x.en!==it.en).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.en);return{...it,opts:[...w,it.en].sort(()=>Math.random()-.5)}});ei=0;eScore=0;document.getElementById('emojiEnd').style.display='none';showEmoji();}
+function showEmoji(){if(ei>=8){endEmoji();return}let q=EQ[ei];document.getElementById('eNum').textContent=ei+1;document.getElementById('eScore').textContent=eScore;document.getElementById('eProg').style.width=(ei/8*100)+'%';document.getElementById('eFeed').className='feedback';document.getElementById('eNext').className='next-btn';let gambar=q.pic||q.emoji;let petunjuk=q.scene||'';document.getElementById('emojiArea').innerHTML=`<div style="font-size:3.5rem;background:#fff3b0;border:4px solid #2b2d42;border-radius:20px;display:inline-block;padding:14px 24px;margin:10px;line-height:1.2">${gambar}</div><div style="background:#e0fbfc;border:2px dashed #2b2d42;border-radius:12px;padding:8px 12px;margin:8px auto;max-width:500px;font-weight:700">🖼️ ${petunjuk}</div><div class="q-text">IDIOM apa ini? 🤔</div><div style="max-width:500px;margin:0 auto">${q.opts.map(o=>`<button class="opt-btn" onclick="answerEmoji(this,'${o.replace(/'/g,"")}')">${o}</button>`).join('')}</div>`;}
+function answerEmoji(btn,ans){if(isLocked('game')){requireUnlocked('game');return;}let q=EQ[ei];document.querySelectorAll('#emojiArea .opt-btn').forEach(b=>b.disabled=true);let feed=document.getElementById('eFeed');if(ans===q.en){btn.classList.add('correct');eScore+=15;addStars(1);feed.className='feedback show ok';feed.innerHTML=`🎉 Betul! <b>${q.en}</b> = ${q.arti}`;playTone(800);speak(q.en);}else{btn.classList.add('wrong');feed.className='feedback show no';feed.innerHTML=`😅 Yang benar <b>${q.en}</b> = ${q.arti}`;playTone(200);}document.getElementById('eScore').textContent=eScore;document.getElementById('eNext').className='next-btn show';}
+function nextEmoji(){ei++;showEmoji();}
+function endEmoji(){document.getElementById('emojiArea').innerHTML='';document.getElementById('eProg').style.width='100%';document.getElementById('emojiEnd').style.display='block';document.getElementById('eFinal').textContent=eScore;document.getElementById('eStars').textContent=eScore>=90?'⭐⭐⭐':eScore>=60?'⭐⭐':eScore>=30?'⭐':'💫';document.getElementById('eMsg').textContent=eScore>=90?'Kamu Master Gambar IDIOM!':eScore>=60?'Hebat!':'Ayo main lagi biar hafal!';saveNilai('gambar',eScore);if(eScore>=60){confetti();playWin();}}
+// MUSIK MP3 - MINI, tidak mengganggu (file lampiran SDN 1 KRONGGEN, offline, loop)
+let musicOn=false;
+function getBgm(){return document.getElementById('bgm');}
+function setVol(v){let a=getBgm();if(a)a.volume=v/100;}
+function toggleMusic(){if(musicOn){stopMusic();}else{startMusic();}}
+function startMusic(){let a=getBgm();if(!a)return;try{a.volume=((document.getElementById('musicVol')||{}).value||50)/100;a.play().then(()=>{musicOn=true;document.getElementById('musicToggle').textContent='⏸️ ON';document.getElementById('musicFab').textContent='🎶';document.getElementById('musicFab').classList.add('playing');}).catch(()=>{musicOn=true;});}catch(e){alert('MP3 tidak bisa diputar, pastikan file MP3 sejajar dengan index.html');}}
+function stopMusic(){let a=getBgm();if(a)a.pause();musicOn=false;try{document.getElementById('musicToggle').textContent='▶️ ON';document.getElementById('musicFab').textContent='🎵';document.getElementById('musicFab').classList.remove('playing');}catch(e){}}
+function restartSong(){let a=getBgm();if(a){a.currentTime=0;if(!musicOn)startMusic();}playTone(800);}
+initEmojiGame();
+updateHome();
+if(studentName){document.getElementById('loginOverlay').style.display='none';document.getElementById('helloName').textContent=studentName;document.getElementById('studentBadge').textContent='👋 '+studentName;}
+updateLocks();
+</script>
+</body>
+</html>
